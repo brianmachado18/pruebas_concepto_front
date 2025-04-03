@@ -1,17 +1,23 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
 import Home from './pages/Home'
-//import Login from './pages/Login'
+import Login from './pages/Login'
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </div>
+    <>
+      <style>{`
+        .Fondo {
+          background-color: #f8f9fd
+        }
+      `}</style>
+      <div class="Fondo">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 
