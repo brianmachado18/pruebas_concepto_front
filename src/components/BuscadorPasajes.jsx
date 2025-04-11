@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import PayPal from "./PayPal";
 
 export default function BuscadorPasajes() {
   const fondoStyle = {
-    backgroundImage: 'url("https://images.unsplash.com/photo-1444084316824-dc26d6657664?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat'
+    backgroundImage:
+      'url("https://images.unsplash.com/photo-1444084316824-dc26d6657664?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
   };
+
+  const [pago, setPago] = useState(false);
+
+  const [form, setForm] = useState({
+    origen: "",
+    destino: "",
+    fecha: "",
+  });
 
   return (
     <div style={fondoStyle}>
-      <div className="py-5" style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
+      <div className="py-5" style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}>
         <section className="container text-white pt-5">
           <h3 className="text-center mb-5 mt 3">¿A dónde querés ir?</h3>
           <form className="row g-3 justify-content-center">
@@ -34,7 +44,18 @@ export default function BuscadorPasajes() {
               <input type="date" className="form-control" />
             </div>
             <div className="col-md-2">
-              <button type="submit" className="btn btn-dark w-100">Buscar</button>
+              {pago ? (
+                <PayPal />
+              ) : (
+                <button
+                  className="btn btn-dark w-100"
+                  onClick={() => {
+                    setPago(true);
+                  }}
+                >
+                  Pagar
+                </button>
+              )}
             </div>
           </form>
         </section>
