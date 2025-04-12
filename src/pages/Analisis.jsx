@@ -31,7 +31,7 @@ export default function OmnibusStatusCharts() {
     labels: ["En movimiento", "Libres", "En mantenimiento", "Inactivos"],
     datasets: [
       {
-        label: "Cantidad de Ómnibus",
+        label: "Barras",
         data: [data.moving, data.available, data.maintenance, data.idle],
         backgroundColor: [
           "rgba(75, 192, 192, 0.6)",
@@ -47,6 +47,7 @@ export default function OmnibusStatusCharts() {
     labels: ["En movimiento", "Libres", "En mantenimiento", "Inactivos"],
     datasets: [
       {
+        label: "Dona",
         data: [data.moving, data.available, data.maintenance, data.idle],
         backgroundColor: [
           "rgba(75, 192, 192, 0.6)",
@@ -59,8 +60,22 @@ export default function OmnibusStatusCharts() {
   };
 
   const options = {
-    responsive: true,
+    responsive: false,
     maintainAspectRatio: false,
+  };
+
+  const chartStyle = {
+    width: '300px',
+    height: '300px',
+    padding: '10px',
+    border: '1px solid #ccc',
+    borderRadius: '12px',
+    backgroundColor: 'white',
+    boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   };
 
 
@@ -68,25 +83,19 @@ export default function OmnibusStatusCharts() {
     <div className="p-4 space-y-8">
       <h1 className="text-2xl font-bold text-center">Estado de la Flota de Ómnibus</h1>
 
-      <div className="flex flex-col md:flex-row justify-center items-start md:items-stretch gap-6">
-        {/* Contenedor de barras */}
-        <div className="flex-1 min-w-0 max-w-[600px] bg-white p-4 rounded-2xl shadow">
-          <h2 className="text-lg font-semibold mb-2 text-center">Gráfico de Barras</h2>
-          <div className="relative h-[300px]">
-            <Bar data={barData} options={options} />
-          </div>
+      <div className="d-flex flex-wrap gap-4 justify-content-center mb-5">
+        {/* Contenedor Gráfico de Barras */}
+        <div style={chartStyle}>
+          <h2 className="text-center text-lg font-semibold mb-2">Gráfico de Barras</h2>
+          <Bar data={barData} options={options} width={250} height={250} />
         </div>
 
-        {/* Contenedor de dona */}
-        <div className="flex-1 min-w-0 max-w-[600px] bg-white p-4 rounded-2xl shadow">
-          <h2 className="text-lg font-semibold mb-2 text-center">Gráfico de Donut</h2>
-          <div className="relative h-[300px] flex items-center justify-center">
-            <Doughnut data={doughnutData} options={options} />
-          </div>
+        {/* Contenedor Gráfico de Dona */}
+        <div style={chartStyle}>
+          <h2 className="text-center text-lg font-semibold mb-2">Gráfico de Donut</h2>
+          <Doughnut data={doughnutData} options={options} width={250} height={250} />
         </div>
       </div>
     </div>
   );
 }
-
-
