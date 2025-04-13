@@ -60,13 +60,14 @@ export default function OmnibusStatusCharts() {
   };
 
   const options = {
-    responsive: false,
+    responsive: true,
     maintainAspectRatio: false,
   };
 
   const chartStyle = {
-    width: '300px',
-    height: '300px',
+    width: '100%',
+    maxWidth: '400px',
+    height: '400px',
     padding: '10px',
     border: '1px solid #ccc',
     borderRadius: '12px',
@@ -74,26 +75,36 @@ export default function OmnibusStatusCharts() {
     boxShadow: '0 0 10px rgba(0,0,0,0.1)',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   };
 
+  const chartContainer = {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    position: 'relative',
+    display: 'flex',
+  };
 
   return (
     <div className="p-4 space-y-8">
       <h1 className="text-2xl font-bold text-center">Estado de la Flota de Ómnibus</h1>
 
       <div className="d-flex flex-wrap gap-4 justify-content-center mb-5">
-        {/* Contenedor Gráfico de Barras */}
+        {/* Gráfico de Barras */}
         <div style={chartStyle}>
           <h2 className="text-center text-lg font-semibold mb-2">Gráfico de Barras</h2>
-          <Bar data={barData} options={options} width={250} height={250} />
+          <div style={chartContainer}>
+            <Bar data={barData} options={options} />
+          </div>
         </div>
 
-        {/* Contenedor Gráfico de Dona */}
+        {/* Gráfico de Dona */}
         <div style={chartStyle}>
           <h2 className="text-center text-lg font-semibold mb-2">Gráfico de Donut</h2>
-          <Doughnut data={doughnutData} options={options} width={250} height={250} />
+          <div style={chartContainer}>
+            <Doughnut data={doughnutData} options={options} />
+          </div>
         </div>
       </div>
     </div>
